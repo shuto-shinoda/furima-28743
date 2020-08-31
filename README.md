@@ -1,24 +1,67 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column           | Type   | Options                 |
+| ---------------- | ------ | ----------------------- |
+| name             | string | null: false             |
+| email            | string | null: false             |
+| password         | string | null:false, unique:true |
+| first_name       | string | null:false              |
+| second_name      | string | null:false              |
+| first_name_kana  | string | null:false              |
+| second_name_kana | string | null:false              |
+| birth_date       | date   | null:false              |
 
-* Ruby version
+- has_many :items, dependent::destroy
+- has_many :purchases, dependent::destroy
 
-* System dependencies
+## sending_destinations テーブル
 
-* Configuration
+| Column           | Type       | Options                     |
+| ---------------- | ---------- | --------------------------- |
+| post_code        | string     | null:false                  |
+| prefecture       | integer    | null:false                  |
+| city             | string     | null:false                  |
+| house_number     | string     | null:false                  |
+| building_name    | string     |                             |
+| phone_number     | string     | unique:true                 |
+| purchase         | references | null:false                  |
 
-* Database creation
+### Association
 
-* Database initialization
+- belongs_to: purchase
 
-* How to run the test suite
+## items テーブル
 
-* Services (job queues, cache servers, search engines, etc.)
+| Column          | Type       | Options                       |
+| --------------- | ---------- | ----------------------------- |
+| name            | string     | null: false                   |
+| image           |            |                               |
+| introduction    | text       | null: false                   |
+| price           | integer    | null: false                   |
+| brand           | text       | null: false                   |
+| condition       | integer    | null: false                   |
+| postage_payer   | integer    | null: false                   |
+| prefecture_code | integer    | null: false                   |
+| preparation_day | integer    | null: false                   |
+| category        | integer    | null: false                   |
+| seller          | references | null: false, foreign_key:turu |
 
-* Deployment instructions
+### Association
 
-* ...
+- has_many :comments, dependent::destroy
+- belongs_to :user
+- has_one :purchases
+
+## purchase
+
+| Column  | Type       | Options           |
+| ------- | ---------- | ----------------- |
+| user    | references | foreign_key: true |
+| item    | references | foreign_key: true |
+
+### Association
+- belongs_to :user, dependent::destroy
+- belongs_to :item, dependent::destroy
+- has_one :sending_destinations
