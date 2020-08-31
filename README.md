@@ -7,12 +7,23 @@
 | name             | string | null: false             |
 | email            | string | null: false             |
 | password         | string | null:false, unique:true |
+<<<<<<< Updated upstream
 | first_name       | string     | null:false |
 | second_name      | string     | null:false |
 | first_name_kana  | string     | null:false |
 | second_name_kana | string     | null:false |
 | birth_date       | date       | null:false |
 | introduction     | text       |            |
+=======
+| first_name       | string | null:false              |
+| second_name      | string | null:false              |
+| first_name_kana  | string | null:false              |
+| second_name_kana | string | null:false              |
+| birth_date       | date   | null:false              |
+| introduction     | text   |                         |
+
+### Association
+>>>>>>> Stashed changes
 
 - has_many :items, dependent: :destroy
 - has_one :profile, dependent: :destroy
@@ -32,7 +43,11 @@
 
 ### Association
 
+<<<<<<< Updated upstream
 - belongs_to: user_id
+=======
+- belongs_to: user
+>>>>>>> Stashed changes
 
 ## items テーブル
 
@@ -47,12 +62,16 @@
 
 ### Association
 
+<<<<<<< Updated upstream
 - has_many :comments, dependent::destroy
 - has_many :favorites, dependent::destroy
+=======
+>>>>>>> Stashed changes
 - has_many :item_imgs, dependent::destroy
 - belongs_to :category
 - belongs_to :user
 
+<<<<<<< Updated upstream
 ## Purchase management
 
 | Column  | Type       | Options           |
@@ -64,3 +83,16 @@
 
 - has_many :users, dependent::destroy
 - has_many :items, dependent::destroy
+=======
+## Purchase management テーブル
+
+| Column   | Type       | Options                        |
+| -------- | ---------- | ------------------------------ |
+| users_id | references | null: false  foreign_key: true |
+| items_id | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :users, dependent::destroy
+- belongs_to :items, dependent::destroy
+>>>>>>> Stashed changes
