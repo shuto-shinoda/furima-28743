@@ -20,26 +20,26 @@
 
 ## sending_destinations テーブル
 
-| Column           | Type       | Options                      |
-| ---------------- | ---------- | ---------------------------- |
-| post_code        | string     | null:false                   |
-| prefecture       | integer    | null:false                   |
-| city             | string     | null:false                   |
-| house_number     | string     | null:false                   |
-| building_name    | string     |                              |
-| phone_number     | string     | unique:true                  |
-| user             | references | null:false, foreign_key:true |
-
+| Column           | Type       | Options                     |
+| ---------------- | ---------- | --------------------------- |
+| post_code        | string     | null:false                  |
+| prefecture       | integer    | null:false                  |
+| city             | string     | null:false                  |
+| house_number     | string     | null:false                  |
+| building_name    | string     |                             |
+| phone_number     | string     | unique:true                 |
+| user             | references | null:false                  |
 ### Association
 
-- belongs_to: user_id
+- belongs_to: purchase
 
 ## items テーブル
 
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
 | name            | string     | null: false                    |
-| text            | text       | null: false                    |
+| item_image      |
+| introduction    | text       | null: false                    |
 | price           | integer    | null: false                    |
 | brand           | text       | null: false                    |
 | item_condition  | integer    | null: false, foreign_key:true  |
@@ -52,14 +52,14 @@
 - belongs_to :category
 - belongs_to :user
 
-## Purchase management
+## purchase
 
 | Column  | Type       | Options           |
 | ------- | ---------- | ----------------- |
-| user_id | references | foreign_key: true |
-| item_id | references | foreign_key: true |
+| user    | references | foreign_key: true |
+| item    | references | foreign_key: true |
 
 ### Association
-
-- has_many :users, dependent::destroy
-- has_many :items, dependent::destroy
+- belongs_to :users, dependent::destroy
+- belongs_to :items, dependent::destroy
+- has_many :sending_destinations
