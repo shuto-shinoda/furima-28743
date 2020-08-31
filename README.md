@@ -75,7 +75,7 @@
 - belongs_to :category
 - belongs_to :user
 
-## purchase
+## purchase テーブル
 
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
