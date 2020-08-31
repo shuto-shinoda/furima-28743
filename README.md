@@ -12,7 +12,6 @@
 | first_name_kana  | string | null:false              |
 | second_name_kana | string | null:false              |
 | birth_date       | date   | null:false              |
-| introduction     | text   |                         |
 
 - has_many :items, dependent: :destroy
 - has_one :profile, dependent: :destroy
@@ -38,17 +37,19 @@
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
 | name            | string     | null: false                    |
-| item_image      |
+| image      |
 | introduction    | text       | null: false                    |
 | price           | integer    | null: false                    |
 | brand           | text       | null: false                    |
-| item_condition  | integer    | null: false, foreign_key:true  |
+| condition       | integer    | null: false, foreign_key:true  |
 | postage_payer   | integer    | null: false, foreign_key:true  |
+| prefecture_code | integer    | null: false                    |
+| preparation_day | integer    | null: false, foreign_key:true  |
+| category        | references | null: false, foreign_key:true  |
 
 ### Association
 
 - has_many :comments, dependent::destroy
-- has_many :favorites, dependent::destroy
 - belongs_to :category
 - belongs_to :user
 
@@ -60,6 +61,6 @@
 | item    | references | foreign_key: true |
 
 ### Association
-- belongs_to :users, dependent::destroy
-- belongs_to :items, dependent::destroy
-- has_many :sending_destinations
+- has_one :users, dependent::destroy
+- has_one :items, dependent::destroy
+- has_one :sending_destinations
