@@ -49,7 +49,6 @@
 
 - has_many :comments, dependent::destroy
 - has_many :favorites, dependent::destroy
-- has_many :item_imgs, dependent::destroy
 - belongs_to :category
 - belongs_to :user
 
