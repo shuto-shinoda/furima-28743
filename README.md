@@ -14,8 +14,6 @@
 | birth_date       | date   | null:false              |
 
 - has_many :items, dependent::destroy
-- has_one :profile, dependent::destroy
-- has_one :sending_destination, dependent::destroy
 - has_many :purchases, dependent::destroy
 
 ## sending_destinations テーブル
@@ -49,7 +47,6 @@
 | preparation_day | integer    | null: false                   |
 | category        | integer    | null: false                   |
 | seller          | references | null: false, foreign_key:turu |
-| buyer           | references | foreign_key:true              |
 
 ### Association
 
