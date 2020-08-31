@@ -88,7 +88,11 @@
 - belongs_to :category
 - belongs_to :user
 
+<<<<<<< Updated upstream
 ## categories テーブル
+=======
+## purchase
+>>>>>>> Stashed changes
 
 | Column  | Type   | Options     |
 | ------- | ------ | ----------- |
