@@ -7,12 +7,12 @@
 | name             | string | null: false             |
 | email            | string | null: false             |
 | password         | string | null:false, unique:true |
-| first_name       | string     | null:false |
-| second_name      | string     | null:false |
-| first_name_kana  | string     | null:false |
-| second_name_kana | string     | null:false |
-| birth_date       | date       | null:false |
-| introduction     | text       |            |
+| first_name       | string | null:false              |
+| second_name      | string | null:false              |
+| first_name_kana  | string | null:false              |
+| second_name_kana | string | null:false              |
+| birth_date       | date   | null:false              |
+| introduction     | text   |                         |
 
 - has_many :items, dependent: :destroy
 - has_one :profile, dependent: :destroy
