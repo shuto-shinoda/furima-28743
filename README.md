@@ -1,24 +1,66 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column           | Type   | Options                 |
+| ---------------- | ------ | ----------------------- |
+| name             | string | null: false             |
+| email            | string | null: false             |
+| password         | string | null:false, unique:true |
+| first_name       | string     | null:false |
+| second_name      | string     | null:false |
+| first_name_kana  | string     | null:false |
+| second_name_kana | string     | null:false |
+| birth_date       | date       | null:false |
+| introduction     | text       |            |
 
-* Ruby version
+- has_many :items, dependent: :destroy
+- has_one :profile, dependent: :destroy
+- has_one :sending_destination, dependent: :destroy
 
-* System dependencies
+## sending_destinations テーブル
 
-* Configuration
+| Column           | Type       | Options                      |
+| ---------------- | ---------- | ---------------------------- |
+| post_code        | string     | null:false                   |
+| prefecture       | integer    | null:false                   |
+| city             | string     | null:false                   |
+| house_number     | string     | null:false                   |
+| building_name    | string     |                              |
+| phone_number     | string     | unique:true                  |
+| user             | references | null:false, foreign_key:true |
 
-* Database creation
+### Association
 
-* Database initialization
+- belongs_to: user_id
 
-* How to run the test suite
+## items テーブル
 
-* Services (job queues, cache servers, search engines, etc.)
+| Column          | Type       | Options                        |
+| --------------- | ---------- | ------------------------------ |
+| name            | string     | null: false                    |
+| text            | text       | null: false                    |
+| price           | integer    | null: false                    |
+| brand           | text       | null: false                    |
+| item_condition  | integer    | null: false, foreign_key:true  |
+| postage_payer   | integer    | null: false, foreign_key:true  |
 
-* Deployment instructions
+### Association
 
-* ...
+- has_many :comments, dependent::destroy
+- has_many :favorites, dependent::destroy
+- has_many :item_imgs, dependent::destroy
+- belongs_to :category
+- belongs_to :user
+
+## Purchase management
+
+| Column  | Type       | Options           |
+| ------- | ---------- | ----------------- |
+| user_id | references | foreign_key: true |
+| item_id | references | foreign_key: true |
+
+### Association
+
+- has_many :users, dependent::destroy
+- has_many :items, dependent::destroy
