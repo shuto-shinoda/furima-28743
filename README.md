@@ -46,7 +46,7 @@
 | prefecture_code | integer    | null: false                   |
 | preparation_day | integer    | null: false                   |
 | category        | integer    | null: false                   |
-| seller          | references | null: false, foreign_key:turu |
+| seller          | references | null: false, foreign_key:true |
 
 ### Association
 
