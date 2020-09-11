@@ -40,13 +40,12 @@
 | image           |            |                               |
 | introduction    | text       | null: false                   |
 | price           | integer    | null: false                   |
-| brand           | text       | null: false                   |
 | condition       | integer    | null: false                   |
 | postage_payer   | integer    | null: false                   |
 | prefecture_code | integer    | null: false                   |
 | preparation_day | integer    | null: false                   |
 | category        | integer    | null: false                   |
-| seller          | references | null: false, foreign_key:true |
+| user            | references | null: false, foreign_key:true |
 
 ### Association
 

@@ -1,6 +1,27 @@
 class ItemsController < ApplicationController
+  before_action :authenticate_user!, except:[:index, :show]
+
   def index
-  def message_params
-    params.require(:item).permit(:content, :image).merge(user_id: current_user.id)
+    @items = Item.all.order("created_at DESC")
+  end
+
+  def new
+    @item = Item.new
+  end
+
+  def create
+    @item = Item.new(item_params)
+    if @item.valid?
+      @item.save
+      redirect_to root_path
+    else
+      render :new
+    end
+  end
+
+  private
+
+  def item_params
+    params.require(:item).permit(:name, :image, :introduction, :price, :condition_id, :postage_payer_id, :prefecture_code_id, :preparation_day_id, :category_id).merge(user_id:current_user.id)
   end
 end
