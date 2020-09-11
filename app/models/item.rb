@@ -14,8 +14,11 @@ class Item < ApplicationRecord
     validates :image
     validates :name
     validates :introduction
-    validates :price, format: { with: /\A[a-zA-Z0-9]+\z/, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}
+    validates :price
   end
+
+  validates :price, numericality: { with: /\A[0-9]+\z/, message: "is invalid. Input half-width characters."}
+  validates :price, numericality: {greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "Enter the amount within 300 ~ 1000000."}
 
   with_options numericality: { other_than: 1 , message: 'select' } do
     validates :condition_id
