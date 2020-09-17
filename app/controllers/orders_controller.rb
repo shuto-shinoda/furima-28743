@@ -1,25 +1,14 @@
 class OrdersController < ApplicationController
+  before_action :set_item, only: [:index, :create]
+
   
     def index
-      @item = Item.find(params[:item_id])
       @order = OrderAddress.new
     end
     
     def create
-      @item = Item.find(params[:item_id])
       @order = OrderAddress.new(order_params)
-      # Payjp.api_key = ENV["PAYJP_SECRET_KEY"] 
-      # customer = Payjp::Customer.create(
-      # description: 'test', 
-      # card: params[:token] 
-      # )
-
-      # card = OrderAddress.new( 
-      #   card_token: params[:token],
-      #   customer_token: customer.id,
-      #   user_id: current_user.id 
-      # )
-      if @order.valid?
+      if @order.valid? && params[:token].present?
         pay_item
         @order.save
         return redirect_to root_path
@@ -42,6 +31,10 @@ class OrdersController < ApplicationController
       card: order_params[:token],
       currency:'jpy'
     )
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
   end
 end
 
