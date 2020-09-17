@@ -55,7 +55,7 @@ RSpec.describe OrderAddress, type: :model do
     expect(@order.errors.full_messages).to include("Phone number can't be blank")
   end
 
-  it "phone_numberが必須であること" do
+  it "phone_numberが11桁以内であること" do
     @order.phone_number = "111111111111"
     @order.valid?
     expect(@order.errors.full_messages).to include("Phone number is invalid")
