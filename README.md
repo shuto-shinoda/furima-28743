@@ -4,8 +4,8 @@
 
 | Column           | Type   | Options                 |
 | ---------------- | ------ | ----------------------- |
-| name             | string | null: false             |
-| email            | string | null: false             |
+| name             | string | null:false             |
+| email            | string | null:false             |
 | password         | string | null:false, unique:true |
 | first_name       | string | null:false              |
 | second_name      | string | null:false              |
